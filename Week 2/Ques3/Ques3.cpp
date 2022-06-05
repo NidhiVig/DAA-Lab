@@ -1,34 +1,37 @@
-#include <algorithm>
-#include <iostream>
-#include <stdlib.h>
-#include <vector>
+#include<bits/stdc++.h>
 using namespace std;
-
-int main(){
-    int t;
-    cin>>t;
-    while(t--){
-        int n;
-        cin>>n;
-        vector<int> num;
-        for(int i=0; i<n; i++){
-             int x;
-             cin>>x;
-             num.push_back(x);
-        }
-         int k;
-         cin>>k;
-         int count = 0;
-        sort(num.begin(), num.end());
-         
-         for(int i=0; i<n; i++){
-              for(int j=i+1; j<n; j++){
-                   if(num[j] - num[i] == k)
-                        count++;
-                   else if (num[j] - num[i] > k)
-                        break;
-              }
-         }
-         cout<<count<<endl;
-    }
+int main()
+{
+   int x;
+   cin>>x;
+   while(x--)
+   {
+         int n;
+    cin>>n;
+    int arr[n];
+    for(int i=0;i<n;i++)
+    cin>>arr[i];
+    int target,count=0;
+    cin>>target;
+    sort(arr,arr+n);
+  
+   for(int i=0;i<n;i++)
+   {
+     int  l=i;
+      int h=n-1;
+       
+       while(l<h)
+       {
+          if(arr[h]-arr[l]==target) {
+              count++;
+              l++;
+              h--;
+          }
+          else if(arr[h]-arr[l]>target) h--;
+          else l++;
+       }
+       
+   }
+    cout<<count<<endl;
+   }
 }
